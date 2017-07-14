@@ -7,6 +7,7 @@ public class Person {
 	private String company;
 	private int num;
 
+	//필드
 	public Person() {
 	}
 
@@ -15,14 +16,7 @@ public class Person {
 		this.num = num;
 	}
 
-	public Person(String name, String hp, String company, int num) {
-
-		this.name = name;
-		this.hp = hp;
-		this.company = company;
-		this.num = num;
-	}
-
+	//메소드
 	public int getNum() {
 		return num;
 	}
@@ -55,18 +49,19 @@ public class Person {
 		this.company = company;
 	}
 
+	//출력용 메소드
 	public void showInfo() {
 
 		System.out.println(num + ". " + name + " " + hp + " " + company);
-
 	}
 
-
+	//다시 데이터에 입력해주기 위해서 포맷에 맞춰 바꿔주기위한 메소드
 	public String getInfo() {
 		String a = ",";
 		return name + a + hp + a + company;
 	}
 
+	//테스트용 스트링
 	@Override
 	public String toString() {
 		return "Person [name=" + name + ", hp=" + hp + ", company=" + company + ", num=" + num + "]";

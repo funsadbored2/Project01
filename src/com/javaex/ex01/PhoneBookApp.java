@@ -73,13 +73,14 @@ public class PhoneBookApp {
 				System.out.println("수정할 프로필 번호를 입력해주세요");
 				System.out.print("번호:");
 				int num = sc.nextInt();
-				
+				sc.nextLine();
 				System.out.println("어떻게 수정 하실건가요?");
+				
 				System.out.print("이름:");
 				p.setName(sc.nextLine());
-				System.out.println();
-				System.out.print("휴대전화 번호:");
+				System.out.print("휴대폰 번호:");
 				p.setHp(sc.nextLine());
+				System.out.print("회사전화번호:");
 				p.setCompany(sc.nextLine());
 				
 				info.revise(num, p);
