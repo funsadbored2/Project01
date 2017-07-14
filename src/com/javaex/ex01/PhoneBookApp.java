@@ -30,6 +30,7 @@ public class PhoneBookApp {
 				continue;
 
 			}
+			
 			case "2": {
 
 				Person p = new Person();
@@ -74,7 +75,8 @@ public class PhoneBookApp {
 				System.out.print("번호:");
 				int num = sc.nextInt();
 				sc.nextLine();
-				System.out.println("어떻게 수정 하실건가요?");
+				System.out.println("수정해주세요");
+				
 				
 				System.out.print("이름:");
 				p.setName(sc.nextLine());
