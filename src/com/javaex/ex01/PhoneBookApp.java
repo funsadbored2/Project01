@@ -1,29 +1,12 @@
 package com.javaex.ex01;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.Reader;
-import java.io.Writer;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class PhoneBookApp {
 
 	public static void main(String[] args) throws IOException {
 		boolean i = true;
-
-		Reader reader = new FileReader("phoneDB.txt");
-		BufferedReader breader = new BufferedReader(reader);
-		Writer writer = new FileWriter("phoneDB.txt");
-		BufferedWriter bwriter = new BufferedWriter(writer);
-
-		Person person = new Person();
-		List<Person> list = new ArrayList<Person>();
-
 		Scanner sc = new Scanner(System.in);
 
 		System.out.println("******************************");
@@ -32,52 +15,82 @@ public class PhoneBookApp {
 
 		while (i) {
 
-			System.out.println("1.리스트  2.등록  3.삭제  4.검색  5.종료");
+			System.out.println("\n1.리스트  2.등록  3.삭제  4.검색  5.수정 6.종료");
 			System.out.println("-------------------------------");
 			System.out.print(">메뉴번호:");
-			int menu_num = sc.nextInt();
-			sc.nextLine();
+			Info info = new Info();
+			String menu_num = sc.nextLine();
 
 			switch (menu_num) {
-			case 1: {
+			case "1": {
+
+				System.out.println("<1.리스트>");
+				info.listShow();
+
+				continue;
 
 			}
-			case 2: {
+			case "2": {
 
-				System.out.print(">이름:");
-				person.setName(sc.nextLine());
-				System.out.print("휴대폰:");
-				person.setName(sc.nextLine());
-				System.out.print("회사번호:");
-				person.setName(sc.nextLine());
+				Person p = new Person();
+
+				System.out.println("<2.추가>");
+				System.out.print("이름:");
+				p.setName(sc.nextLine());
+				System.out.print("휴대폰 번호:");
+				p.setHp(sc.nextLine());
+				System.out.print("회사전화번호:");
+				p.setCompany(sc.nextLine());
+
+				info.add(p);
+
+				continue;
+
+			}
+			case "3": {
+
+				System.out.println("<3.삭제>");
+				System.out.print("번호 입력:");
+				int delNum = sc.nextInt();
+
+				info.delete(delNum);
+				continue;
+			}
+			case "4": {
+
+				System.out.println("<4.찾기>");
+				System.out.print("글자:");
+				String a = sc.nextLine();
+				info.search(a);
+
+				continue;
+			}
+			case "5": {
+
+				Person p = new Person();
+
+				System.out.println("<5.수정>");
+				System.out.println("수정할 프로필 번호를 입력해주세요");
+				System.out.print("번호:");
+				int num = sc.nextInt();
 				
-				while (true) {
-
-					String info = breader.readLine();
-					if (info == null) {
-						break;
-					}
-					writer.write(info);
-				}
-
-				writer.write(person.saveInfo());
+				System.out.println("어떻게 수정 하실건가요?");
+				System.out.print("이름:");
+				p.setName(sc.nextLine());
+				System.out.println();
+				System.out.print("휴대전화 번호:");
+				p.setHp(sc.nextLine());
+				p.setCompany(sc.nextLine());
+				
+				info.revise(num, p);
+				
+				continue;
 
 			}
-			case 3: {
-				String[] info = breader.readLine().split(",");
-
-				person.setName(info[0]);
-				person.setHp(info[1]);
-				person.setCompany(info[2]);
-
-				list.add(person);
-				// outputstream을 통해 읽고 부분만 입력 아마 if문 사용
-			}
-			case 4: {
-				// inputstream을 통해 string 으로 읽어오고 나서 if문써서 찾아오기
-			}
-			case 5: {
+			case "6": {
+				System.out.println("종료합니다.");
 				i = false;
+				continue;
 			}
 			default: {
 				System.out.println("다시 입력해주세요");
@@ -85,7 +98,7 @@ public class PhoneBookApp {
 			}
 		}
 
-		breader.close();
+		sc.close();
 	}
 
 }
